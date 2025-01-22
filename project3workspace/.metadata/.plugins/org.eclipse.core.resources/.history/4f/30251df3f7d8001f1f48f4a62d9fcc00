@@ -1,0 +1,35 @@
+package com.project.cabBooking.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.project.cabBooking.model.CabBooking;
+import com.project.cabBooking.repo.CabRepo.CabBookingRepository;
+
+@RestController
+	@RequestMapping("/api/cab")
+	public class CabBookingController {
+
+	    @Autowired
+	    private CabBookingRepository repository;
+
+	    // Save a booking
+	    @PostMapping("/book")
+	    public CabBooking bookCab(@RequestBody CabBooking cabBooking) {
+	        return repository.save(cabBooking);
+	    }
+
+	    // Get all bookings
+	    @GetMapping("/list")
+	    public List<CabBooking> getAllBookings() {
+	        return repository.findAll();
+	    }
+	}
+
+

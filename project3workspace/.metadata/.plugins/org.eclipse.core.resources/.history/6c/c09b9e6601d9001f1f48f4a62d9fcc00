@@ -1,0 +1,55 @@
+package com.project.cabBooking;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.project.cabBooking.model.CabBooking;
+import com.project.cabBooking.repo.CabRepo;
+
+@SpringBootTest
+class CabBookingApplicationTests {
+
+	
+	
+	@LocalServerPort
+    private int port;
+
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Autowired
+    private CabRepo cabRepo;
+
+    private String getBaseUrl() {
+        return "http://localhost:" + port + "/api/cab";
+    }
+
+    @Test
+    void contextLoads() {
+        assertNotNull(restTemplate);
+    }
+
+    @Test
+    void testCreateCabBooking() {
+        CabBooking booking = new CabBooking();
+        booking.setCustomerName("Lucy");
+        booking.setPickupLocation("Manchester");
+        booking.setDestination("Liverpool");
+        booking.setDistance(50.0);
+
+        ResponseEntity<CabBooking> response = restTemplate.postForEntity(getBaseUrl() + "/book", booking, CabBooking.class);
+        
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals("Lucy", response.getBody().getCustomerName());
+    }
+
+}

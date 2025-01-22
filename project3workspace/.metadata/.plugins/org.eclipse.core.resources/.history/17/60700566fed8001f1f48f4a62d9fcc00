@@ -1,0 +1,5 @@
+package com.project.cabFare.controller;
+
+public class FareController {
+
+}

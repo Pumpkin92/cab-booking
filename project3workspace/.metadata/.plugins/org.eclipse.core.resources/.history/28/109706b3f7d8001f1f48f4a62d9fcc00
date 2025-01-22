@@ -1,0 +1,5 @@
+package com.project.cabBooking.repo;
+
+public interface CabRepo {
+
+}

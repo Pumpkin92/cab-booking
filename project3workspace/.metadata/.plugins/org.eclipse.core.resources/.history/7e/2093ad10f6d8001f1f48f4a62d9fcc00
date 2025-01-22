@@ -1,0 +1,14 @@
+package com.project.cabfrontend.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class CabController {private final String BOOKING_SERVICE_URL = "http://localhost:8081/api/cab";
+private final String FARE_SERVICE_URL = "http://localhost:8082/api/fare";
+
+    @GetMapping("/")
+    public String homePage() {
+        return "index"; // ✅ Resolves to /WEB-INF/views/index.jsp
+    }
+}

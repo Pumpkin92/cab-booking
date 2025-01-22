@@ -1,0 +1,5 @@
+package com.project.cabfrontend.controller;
+
+public class CabController {
+
+}
