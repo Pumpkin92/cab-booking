@@ -9,7 +9,7 @@
 <body>
 <h2>Book a Cab</h2>
 
-    <%-- Show success/error message --%>
+   
     <c:if test="${not empty message}">
         <p>${message}</p>
     </c:if>

@@ -11,25 +11,20 @@ import org.springframework.web.client.RestTemplate;
 import com.project.cabfrontend.model.CabBooking;
 
 @Controller
-public class CabController {private final String BOOKING_SERVICE_URL = "http://localhost:8081/api/cab";
+public class CabController {
+private final String BOOKING_SERVICE_URL = "http://localhost:8081/api/cab";
 private final String FARE_SERVICE_URL = "http://localhost:8082/api/fare";
 
     @GetMapping("/")
     public String homePage() {
-        return "index"; // ✅ Resolves to /WEB-INF/views/index.jsp
+        return "index"; 
     }
     @GetMapping("/book")
     public String bookCabForm(Model model) {
         model.addAttribute("cabBooking", new CabBooking());
-        return "booking-form"; // Loads /WEB-INF/views/booking-form.jsp
+        return "booking-form"; 
     }
 
-//    @PostMapping("/book")
-//    public String bookCab(@ModelAttribute CabBooking cabBooking) {
-//        RestTemplate restTemplate = new RestTemplate();
-//        restTemplate.postForObject(BOOKING_SERVICE_URL + "/book", cabBooking, CabBooking.class);
-//        return "redirect:/bookings";
-//    }
     
     @PostMapping("/book")
     public String bookCab(@ModelAttribute CabBooking cabBooking, Model model) {

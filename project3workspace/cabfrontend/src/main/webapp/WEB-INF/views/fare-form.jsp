@@ -9,7 +9,7 @@
 <body>
 <h2>Calculate Fare</h2>
 
-    <%-- Show calculated fare --%>
+    
     <c:if test="${not empty fare}">
         <p>${fare}</p>
     </c:if>
